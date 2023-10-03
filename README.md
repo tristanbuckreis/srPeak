@@ -4,6 +4,7 @@ A python implementation of an automated algorithm to identify resonant peak feat
 
 # Automated Peak Identification Algorithm
 
+![Figure 7](https://github.com/tristanbuckreis/srPeak/assets/71461454/d8dd17de-dc54-4032-b59c-143eb5eb2c66)
 
 
 # References:
