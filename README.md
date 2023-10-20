@@ -41,7 +41,52 @@ The peak detection algorithm operates on the stepped results of tree regression 
 ![Figure 7](https://github.com/tristanbuckreis/srPeak/assets/71461454/d8dd17de-dc54-4032-b59c-143eb5eb2c66)
 <p align="justify"><b>Figure 2.</b>Flowchart illustrating site response peak detection algorithm utilizing tree regression stepped results; amp parameters relate to step amplitudes; wid and step parameters relate to step widths; <i>T</i> represents the periods within the step; subscripts <i>l</i>, <i>p</i>, and <i>r</i> indicate the left, peak, and right steps, respectively; <i>n</i> is the total number of steps; 𝜂̅<sub>𝑆,𝑗</sub><sup>𝑣</sup> and <𝑆𝐸̅̅<sub>𝑗</sub> are the average 𝜂<sub>𝑆,𝑗</sub><sup>𝑣</sup> amplitude and standard error within the step, respectively; and <i>step<sub>thres</sub></i>, <i>k<sub>thres</sub></i>, <i>amp<sub>thres</sub></i>, and <i>wid<sub>thres</sub></i> are adjustable algorithm parameters.</p>
 
-# Main Function:
+# Functions:
+
+### Identify_Site_Response_Peaks
+```python
+Identify_Site_Response_Peaks(period, site_response, standard_error, 
+                             cp_alpha = 0.0003, step_thres = 0.65, amp_thres = 0.27, 
+                             wid_thres = 2.3, k_thres = 0.9, plot = True)
+```
+
+Function to identify peak features in residual site response, using automated algorithm presented in Buckreis et al. (202x)
+
+Input Arguments:
+  - ```period``` = array of periods
+  - ```site_response``` = array of residual site response, at periods specified in "period"
+  - ```standard_error``` = array of standard errors for residual site response, at periods specified in "period"
+  - ```cp_alpha``` = complexity parameter (default = 0.0003)
+  - ```step_thres``` = threshold for width of "stable peak tails" (default = 0.65)
+  - ```amp_thres``` = threshold for relative peak amplitude = peak - tail (default = 0.27)
+  - ```wid_thres``` = threshold for width of peak (default = 2.3)
+  - ```k_thres``` = scaling constant for evaluating uncertainty of peak and tail amplitudes (default = 0.9)
+  - ```plot``` = option to plot the results or not (default = True)
+  
+Output Arguments:
+  - if ```plot == 0```: ```[peak_indicator]```<br>
+      ```peak_indicator``` = ```Flase``` if there is no peak; ```True``` if there is a peak
+  - if ```plot == 1```: ```[peak_indicator, fig]```<br>
+      ```peak_indicator``` = ```False``` if there is no peak; ```True``` if there is a peak<br>
+      ```fig``` = matplotlib Figure object
+
+
+### tree_to_nodes
+```python
+tree_to_nodes(period, site_response, cp_alpha)
+```
+
+Sub-function to fit tree-regression and extract nodes from results for peak identification code.
+
+Input Arguments:
+  - ```period``` = array of periods
+  - ```site_response``` = array of residual site response, at periods specified in "period"
+  - ```cp_alpha``` = complexity parameter
+  
+Output Arguments:
+  - ```nodes``` = array of period-values corresponding to tree-regression nodes
+  - ```values``` = array of site response-values corresponding to tree regression nodes
+
 
 # Examples:
 
