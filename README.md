@@ -15,27 +15,27 @@ In general, “peaks” are defined as features possessing the following key att
 
 The peak detection algorithm operates on the stepped results of tree regression and is shown as a flow chart in Figure 5.19. The algorithm operates as follows:
 1. <p align="justify">Identify potential peak steps: Step <i>m</i> is a peak if its amplitude (<i>amp<sub>p</sub></i>) is larger than those of steps <i>m</i> – 1 and <i>m</i> + 1.</p>
-2. <p align="justify">For each potential peak step in Task (1), identify the left-peak-adjacent step-plateau (𝑠𝑡𝑒𝑝𝑙). This identification has the following sub-steps:</p>
+2. <p align="justify">For each potential peak step in Task (1), identify the left-peak-adjacent step-plateau (<i>step<sub>l</sub></i>). This identification has the following sub-steps:</p>
    <p align="justify">i. Let <i>l</i> denote the number of steps to the left of the peak step (i.e., <i>l</i> = 0 is the peak step <i>m</i>; <i>l</i> = 1 is the step immediately to the left of step <i>m</i>; <i>l</i> = 2 is the second step to the left of step <i>m</i>; and so on).</p>
-   <p align="justify">ii. Starting at <i>l</i> = 1, obtain the left step amplitude (<i>amp<sub>m-l</sub></i>) and calculate the width (natural log difference of maximum and minimum period of step <i>m</i> – <i>l</i>; 𝑤𝑖𝑑m−l).</p>
+   <p align="justify">ii. Starting at <i>l</i> = 1, obtain the left step amplitude (<i>amp<sub>m-l</sub></i>) and calculate the width (natural log difference of maximum and minimum period of step <i>m</i> – <i>l</i>; <i>wid<sub>m-l</sub></i>).</p>
    <p align="justify">iii. If <i>amp<sub>m-l</sub></i>><i>amp<sub>m-l+1</sub></i>, then step <i>m</i> – <i>l</i> + 1 is the left-peak-adjacent step plateau, and proceed to Task (3). Otherwise, continue to Sub-task (iv).</p>
-   <p align="justify">iv. If w𝑖𝑑m−l> 𝑠𝑡𝑒𝑝𝑡ℎ𝑟𝑒𝑠, the step is sufficiently wide to be considered a plateau, and step <i>m</i> – <i>l</i> is the left-peak-adjacent step plateau, and proceed to Task (3). Otherwise, continue to Sub-task (v).</p>
+   <p align="justify">iv. If <i>wid<sub>m-l</sub></i>> <i>step<sub>thres</sub></i>, the step is sufficiently wide to be considered a plateau, and step <i>m</i> – <i>l</i> is the left-peak-adjacent step plateau, and proceed to Task (3). Otherwise, continue to Sub-task (v).</p>
    <p align="justify">v. If <i>m</i> – <i>l</i> = 1 (i.e., the first step), then go back through all left-steps and select the step with the largest width, and proceed to Task (3).</p>
-3. <p align="justify">For each potential peak step in Task (1), identify the right-peak-adjacent step-plateau (𝑠𝑡𝑒𝑝𝑟):</p>
+3. <p align="justify">For each potential peak step in Task (1), identify the right-peak-adjacent step-plateau (<i>step<sub>r</sub></i>):</p>
    <p align="justify">i. Let <i>r</i> denote the number of steps to the right of the peak step (i.e., <i>r</i> = 0 is the peak step <i>m</i>; <i>r</i> = 1 is the step immediately to the right of step <i>m</i>; <i>r</i> = 2 is the second step to the right of step <i>m</i>; and so on).</p>
-   <p align="justify">ii. Starting at <i>r</i> = 1, obtain the right step amplitude (<i>amp<sub>m+r</sub></i>) and calculate the width (log difference of maximum and minimum period of step <i>m</i> + <i>r</i>; 𝑤𝑖𝑑m+r).</p>
+   <p align="justify">ii. Starting at <i>r</i> = 1, obtain the right step amplitude (<i>amp<sub>m+r</sub></i>) and calculate the width (log difference of maximum and minimum period of step <i>m</i> + <i>r</i>; <i>wid<sub>m+r</sub></i>).</p>
    <p align="justify">iii. If <i>amp<sub>m+r</sub></i>><i>amp<sub>m+r-1</sub></i>, then step <i>m</i> + <i>r</i> + 1 is the right-peak-adjacent step plateau, and proceed to Task (4). Otherwise, continue to Sub-task (iv).</p>
-   <p align="justify">iv. If w𝑖𝑑m+r> 𝑠𝑡𝑒𝑝𝑡ℎ𝑟𝑒𝑠, the step is sufficiently wide enough to be considered a plateau, and step <i>m</i> + <i>r</i> is the right-peak-adjacent step plateau, and proceed to Task (4). Otherwise, continue to Sub-task (v).</p>
+   <p align="justify">iv. If <i>wid<sub>m+r</sub></i> > <i>step<sub>thres</sub></i>, the step is sufficiently wide enough to be considered a plateau, and step <i>m</i> + <i>r</i> is the right-peak-adjacent step plateau, and proceed to Task (4). Otherwise, continue to Sub-task (v).</p>
    <p align="justify">v. If <i>m</i> + <i>r</i> = <i>n</i>, where <i>n</i> represents the number of steps in the piecewise function, then go back through all right-steps and select the step with the largest width, and proceed to Task (4).</p>
-4. <p align="justify">For each potential peak step in Task (1), compute the peak width (𝑤𝑖𝑑𝑝):</p>
-   <p align="justify">i. Identify the maximum period of the left-peak-adjacent step plateau (𝑇𝑙).</p>
-   <p align="justify">ii. Identify the minimum period of the right-peak-adjacent step plateau (𝑇𝑟).</p>
-   <p align="justify">iii. Compute 𝑤𝑖𝑑𝑝 = ln (𝑇𝑟) – ln (𝑇𝑙).</p>
-5. <p align="justify">For each potential peak step in Task (1), compute 𝑘= (𝑎𝑚𝑝𝑝 – 𝜂̅𝑆,𝑗𝑣)/ 𝑆𝐸̅̅̅̅𝜂𝑆,𝑗𝑣 for the left- and right-peak-adjacent step plateaus, where 𝜂̅𝑆,𝑗𝑣 and 𝑆𝐸̅̅̅̅𝜂𝑆,𝑗𝑣 represent the average amplitude and standard error over the step width, and 𝑘 represents a non-zero multiplier.</p>
+4. <p align="justify">For each potential peak step in Task (1), compute the peak width (<i>wid<sub>p</sub></i>):</p>
+   <p align="justify">i. Identify the maximum period of the left-peak-adjacent step plateau (<i>T<sub>l</sub></i>).</p>
+   <p align="justify">ii. Identify the minimum period of the right-peak-adjacent step plateau (<i>T<sub>r</sub></i>).</p>
+   <p align="justify">iii. Compute <i>wid<sub>p</sub></i> = ln(<i>T<sub>r</sub></i>) – ln(<i>T<sub>l</sub></i>).</p>
+5. <p align="justify">For each potential peak step in Task (1), compute 𝑘= (<i>amp<sub>p</sub></i> – 𝜂̅𝑆,𝑗𝑣)/ 𝑆𝐸̅̅̅̅𝜂𝑆,𝑗𝑣 for the left- and right-peak-adjacent step plateaus, where 𝜂̅𝑆,𝑗𝑣 and 𝑆𝐸̅̅̅̅𝜂𝑆,𝑗𝑣 represent the average amplitude and standard error over the step width, and 𝑘 represents a non-zero multiplier.</p>
 6. <p align="justify">Identify clear peak features from among potential peaks: Clear peaks are those which satisfy the following criteria:</p>
    <p align="justify">(a) The difference between 𝑎𝑚𝑝𝑝 and the maximum of <i>amp<sub>l</sub></i> and <i>amp<sub>r</sub></i> should exceed a threshold: <i>amp<sub>p</sub></i>−max(<i>amp<sub>l</sub></i>,<i>amp<sub>r</sub></i>)≥<i>amp<sub>thres</sub></i>.</p>
-   <p align="justify">(b) The peak should not be too wide: 𝑤𝑖𝑑𝑝≤𝑤𝑖𝑑𝑡ℎ𝑟𝑒𝑠.</p>
-   <p align="justify">(c) There should be sufficient confidence that the mean peak amplitude (𝑎𝑚𝑝𝑝) is greater than the right- and left-peak-adjacent step plateau amplitudes: min(𝑘𝑙,𝑘𝑟)≥𝑘𝑡ℎ𝑟𝑒𝑠.</p>
+   <p align="justify">(b) The peak should not be too wide: <i>wid<sub>p</sub></i>≤<i>wid<sub>thres</sub></i>.</p>
+   <p align="justify">(c) There should be sufficient confidence that the mean peak amplitude (<i>amp<sub>p</sub></i>) is greater than the right- and left-peak-adjacent step plateau amplitudes: min(𝑘𝑙,𝑘𝑟)≥<i>k<sub>thres</sub></i>.</p>
 <br>
 
 ![Figure 7](https://github.com/tristanbuckreis/srPeak/assets/71461454/d8dd17de-dc54-4032-b59c-143eb5eb2c66)
