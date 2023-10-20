@@ -95,9 +95,10 @@ Output Arguments:
 
 # Examples:
 
-<p align="justify"><b>Figure 3.</b> Annotated example implementation of automated peak-identification code using default constraints.</p>
+![image](https://github.com/tristanbuckreis/srPeak/assets/71461454/5ba69995-778d-4d02-a799-9e978b3b24b7)
+<p align="center"><b>Figure 3.</b> Annotated example implementation of automated peak-identification code using default constraints.</p>
 
-
+![image](https://github.com/tristanbuckreis/srPeak/assets/71461454/b051c225-11da-46e3-8e13-273260f520fe)
 <p align="justify"><b>Figure 4.</b> Example implementations of automated peak-identification code: (a) no-peaks identified, (b) one-peak identified, (c) multiple peaks identified.</p>
 
 # References:
