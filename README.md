@@ -44,6 +44,8 @@ The peak detection algorithm operates on the stepped results of tree regression 
 ![Figure 7](https://github.com/tristanbuckreis/srPeak/assets/71461454/d8dd17de-dc54-4032-b59c-143eb5eb2c66)
 <p align="justify"><b>Figure 2.</b>Flowchart illustrating site response peak detection algorithm utilizing tree regression stepped results; amp parameters relate to step amplitudes; wid and step parameters relate to step widths; <i>T</i> represents the periods within the step; subscripts <i>l</i>, <i>p</i>, and <i>r</i> indicate the left, peak, and right steps, respectively; <i>n</i> is the total number of steps; 𝜂̅<sub>𝑆,𝑗</sub><sup>𝑣</sup> and <𝑆𝐸̅̅<sub>𝑗</sub> are the average 𝜂<sub>𝑆,𝑗</sub><sup>𝑣</sup> amplitude and standard error within the step, respectively; and <i>step<sub>thres</sub></i>, <i>k<sub>thres</sub></i>, <i>amp<sub>thres</sub></i>, and <i>wid<sub>thres</sub></i> are adjustable algorithm parameters.</p>
 
+The threshold parameters can be adjusted to suit the analyst's preference. Smaller values of <i>step<sub>thres</sub></i> and <i>wid<sub>thres</sub></i>, and larger values of <i>amp<sub>thres</sub></i> and <i>k<sub>thres</sub></i> result in fewer peaks identified. Sites whichclearly possess or do not possess peak features are less sensitive to selection of these parameters. The recommended values of <i>step<sub>thres</sub></i>, <i>amp<sub>thres</sub></i>, <i>wid<sub>thres</sub></i>, and <i>k<sub>thres</sub></i> are 0.65, 0.27, 2.3, and 0.9, respectively.
+
 # Functions:
 
 ## Identify_Site_Response_Peaks
