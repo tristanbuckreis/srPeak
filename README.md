@@ -13,7 +13,7 @@ In general, “peaks” are defined as features possessing the following key att
 
 <p align="justify">The principal challenge in assessing the first two attributes is defining the amplitudes and locations (periods/frequencies) of site response peaks; what is required is a parameterization of site response amplitudes adjacent to peak features and within peak features. This algorithm implements a regression tree (Breiman et al. 1984), which is a predictive modeling approach in machine learning, to effectively smooth and simplify the empirical site response as a piecewise function of non-overlapping linear segments (i.e., steps). A complexity parameter (<i>c<sub>p</sub></i>) is used to specify the penalty in tree regression. Large values of <i>c<sub>p</sub></i> produce relatively crude fits with wide steps, whereas smaller values produce better fits with narrow steps. Figure 1 illustrates the influence of the <i>c<sub>p</sub></i> parameter on the tree regression for an individual site. If <i>c<sub>p</sub></i> is too large, the fit is poor, whereas if <i>c<sub>p</sub></i> is too small, there is the potential that the tree regression captures too many small peaks, which is not amendable to defining a stable peak-adjacent plateau. Selection of the preferred value of <i>c<sub>p</sub></i> is subjective, however <i>c<sub>p</sub></i> = 0.0003 is found to provide a reasonable balance between accuracy and reliability.</p>
 
-[!image](https://github.com/tristanbuckreis/srPeak/blob/0efc3e65168cf502fdb8ff90edc30e8aed0b6115/Figure%201.png)
+![image](https://github.com/tristanbuckreis/srPeak/blob/0efc3e65168cf502fdb8ff90edc30e8aed0b6115/Figure%201.png)
 <p align="justify"><b>Figure 1.</b> Schematic illustration of regression tree fitting of site response data with different values of the complexity parameter (<i>c<sub>p</sub></i>): (a) <i>c<sub>p</sub></i> = 0.003, (b) <i>c<sub>p</sub></i> = 0.0003, and (c) <i>c<sub>p</sub></i> = 0.00003.</p>
 
 The peak detection algorithm operates on the stepped results of tree regression and is shown as a flow chart in Figure 2. The algorithm operates as follows:
@@ -41,7 +41,7 @@ The peak detection algorithm operates on the stepped results of tree regression 
    <p align="justify">(c) There should be sufficient confidence that the mean peak amplitude (<i>amp<sub>p</sub></i>) is greater than the right- and left-peak-adjacent step plateau amplitudes: min(<i>k<sub>l</sub></i>, <i>k<sub>r</sub></i>) ≥ <i>k<sub>thres</sub></i>.</p>
 <br>
 
-[!image](https://github.com/tristanbuckreis/srPeak/blob/0efc3e65168cf502fdb8ff90edc30e8aed0b6115/Figure%202.png)
+![image](https://github.com/tristanbuckreis/srPeak/blob/0efc3e65168cf502fdb8ff90edc30e8aed0b6115/Figure%202.png)
 <p align="justify"><b>Figure 2.</b>Flowchart illustrating site response peak detection algorithm utilizing tree regression stepped results; amp parameters relate to step amplitudes; wid and step parameters relate to step widths; <i>T</i> represents the periods within the step; subscripts <i>l</i>, <i>p</i>, and <i>r</i> indicate the left, peak, and right steps, respectively; <i>n</i> is the total number of steps; 𝜂̅<sub>𝑆,𝑗</sub><sup>𝑣</sup> and <𝑆𝐸̅̅<sub>𝑗</sub> are the average 𝜂<sub>𝑆,𝑗</sub><sup>𝑣</sup> amplitude and standard error within the step, respectively; and <i>step<sub>thres</sub></i>, <i>k<sub>thres</sub></i>, <i>amp<sub>thres</sub></i>, and <i>wid<sub>thres</sub></i> are adjustable algorithm parameters.</p>
 
 The threshold parameters can be adjusted to suit the analyst's preference. Smaller values of <i>step<sub>thres</sub></i> and <i>wid<sub>thres</sub></i>, and larger values of <i>amp<sub>thres</sub></i> and <i>k<sub>thres</sub></i> result in fewer peaks identified. Sites whichclearly possess or do not possess peak features are less sensitive to selection of these parameters. The recommended values of <i>step<sub>thres</sub></i>, <i>amp<sub>thres</sub></i>, <i>wid<sub>thres</sub></i>, and <i>k<sub>thres</sub></i> are 0.65, 0.27, 2.3, and 0.9, respectively.
@@ -95,10 +95,10 @@ Output Arguments:
 
 # Examples:
 
-[!image](https://github.com/tristanbuckreis/srPeak/blob/0efc3e65168cf502fdb8ff90edc30e8aed0b6115/Figure%203.png)
+![image](https://github.com/tristanbuckreis/srPeak/blob/0efc3e65168cf502fdb8ff90edc30e8aed0b6115/Figure%203.png)
 <p align="center"><b>Figure 3.</b> Annotated example implementation of automated peak-identification code using default constraints.</p>
 
-[!image](https://github.com/tristanbuckreis/srPeak/blob/0efc3e65168cf502fdb8ff90edc30e8aed0b6115/Figure%204.png)
+![image](https://github.com/tristanbuckreis/srPeak/blob/0efc3e65168cf502fdb8ff90edc30e8aed0b6115/Figure%204.png)
 <p align="justify"><b>Figure 4.</b> Example implementations of automated peak-identification code: (a) no-peaks identified, (b) one-peak identified, (c) multiple peaks identified.</p>
 
 # References:
