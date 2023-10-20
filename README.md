@@ -9,7 +9,7 @@ In general, “peaks” are defined as features possessing the following key att
 2. Have sufficiently large mean amplitude relative to adjacent periods/frequencies, and
 3. Have sufficient confidence that the feature is meaningful (i.e., uncertainty in amplitudes or frequencies should not be too large).
    
-<p align="justify">This peak detection algorithm is adapted from that recommended by Wang et al. (2021) for HVSR to application to site response, which considers the three attributes listed above. For the purposes of this algorithm, site response refers to the unmodeled site response after <i>V<sub>S30</sub></i>-scaling effects have been accounted for (denoted 𝜂<sub>𝑆,𝑗</sub><sup>𝑣</sup>).</p>
+<p align="justify">This peak detection algorithm is adapted from that recommended by Wang et al. (2023) for HVSR to application to site response, which considers the three attributes listed above. For the purposes of this algorithm, site response refers to the unmodeled site response after <i>V<sub>S30</sub></i>-scaling effects have been accounted for (denoted 𝜂<sub>𝑆,𝑗</sub><sup>𝑣</sup>).</p>
 
 <p align="justify">The principal challenge in assessing the first two attributes is defining the amplitudes and locations (periods/frequencies) of site response peaks; what is required is a parameterization of site response amplitudes adjacent to peak features and within peak features. This algorithm implements a regression tree (Breiman et al. 1984), which is a predictive modeling approach in machine learning, to effectively smooth and simplify the empirical site response as a piecewise function of non-overlapping linear segments (i.e., steps). A complexity parameter (<i>c<sub>p</sub></i>) is used to specify the penalty in tree regression. Large values of <i>c<sub>p</sub></i> produce relatively crude fits with wide steps, whereas smaller values produce better fits with narrow steps. Figure 1 illustrates the influence of the <i>c<sub>p</sub></i> parameter on the tree regression for an individual site. If <i>c<sub>p</sub></i> is too large, the fit is poor, whereas if <i>c<sub>p</sub></i> is too small, there is the potential that the tree regression captures too many small peaks, which is not amendable to defining a stable peak-adjacent plateau. Selection of the preferred value of <i>c<sub>p</sub></i> is subjective, however <i>c<sub>p</sub></i> = 0.0003 is found to provide a reasonable balance between accuracy and reliability.</p>
 
@@ -54,8 +54,8 @@ Function to identify peak features in residual site response, using automated al
 
 Input Arguments:
   - ```period``` = array of periods
-  - ```site_response``` = array of residual site response, at periods specified in "period"
-  - ```standard_error``` = array of standard errors for residual site response, at periods specified in "period"
+  - ```site_response``` = array of residual site response, at periods specified in ```period```
+  - ```standard_error``` = array of standard errors for residual site response, at periods specified in ```period```
   - ```cp_alpha``` = complexity parameter (default = 0.0003)
   - ```step_thres``` = threshold for width of "stable peak tails" (default = 0.65)
   - ```amp_thres``` = threshold for relative peak amplitude = peak - tail (default = 0.27)
@@ -80,7 +80,7 @@ Sub-function to fit tree-regression and extract nodes from results for peak iden
 
 Input Arguments:
   - ```period``` = array of periods
-  - ```site_response``` = array of residual site response, at periods specified in "period"
+  - ```site_response``` = array of residual site response, at periods specified in ```period```
   - ```cp_alpha``` = complexity parameter
   
 Output Arguments:
@@ -92,4 +92,8 @@ Output Arguments:
 
 # References:
 
+Breiman L., Friedman J.H., Olshen R.A., and Stone C.J. (1984) <i>Classification and Regression Trees</i>. Wadsworth.
+
 Buckreis, T.E. (2022) Customization of path and site response components of global ground motion models for application in Sacramento-San Joaquin Delta region of California. Doctoral dissertation, University of California, Los Angeles, Los Angeles, CA.
+
+Wang P., Zimmaro P., Ahdi S.K., Yong A., and Stewart J.P. (2023) Identification protocols for horizontal-to-vertical spectral ratio peaks. <i>Bulletin of the Seismological Society of America</i> 113(2): 782 – 803.
