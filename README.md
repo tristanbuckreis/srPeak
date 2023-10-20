@@ -95,6 +95,11 @@ Output Arguments:
 
 # Examples:
 
+<p align="justify"><b>Figure 3.</b> Annotated example implementation of automated peak-identification code using default constraints.</p>
+
+
+<p align="justify"><b>Figure 4.</b> Example implementations of automated peak-identification code: (a) no-peaks identified, (b) one-peak identified, (c) multiple peaks identified.</p>
+
 # References:
 
 Breiman L., Friedman J.H., Olshen R.A., and Stone C.J. (1984) <i>Classification and Regression Trees</i>. Wadsworth.
