@@ -1,13 +1,13 @@
 # srPeak
 
-A python implementation of an automated algorithm to identify resonant peak features in data-derived site response. Further details are provided in Buckreis (2022).
-
-# Automated Peak Identification Algorithm
+<p align="justify">A python implementation of an automated algorithm to identify resonant peak features in data-derived site response. Further details are provided in Buckreis (2022).</p>
 
 In general, “peaks” are defined as features possessing the following key attributes:
 1. Relatively localized (i.e., the width should not span too large of a period/frequency range),
 2. Have sufficiently large mean amplitude relative to adjacent periods/frequencies, and
 3. Have sufficient confidence that the feature is meaningful (i.e., uncertainty in amplitudes or frequencies should not be too large).
+
+# Automated Peak Identification Algorithm
    
 <p align="justify">This peak detection algorithm is adapted from that recommended by Wang et al. (2023) for HVSR to application to site response, which considers the three attributes listed above. For the purposes of this algorithm, site response refers to the unmodeled site response after <i>V<sub>S30</sub></i>-scaling effects have been accounted for (denoted 𝜂<sub>𝑆,𝑗</sub><sup>𝑣</sup>).</p>
 
@@ -43,7 +43,7 @@ The peak detection algorithm operates on the stepped results of tree regression 
 
 # Functions:
 
-### Identify_Site_Response_Peaks
+## Identify_Site_Response_Peaks
 ```python
 Identify_Site_Response_Peaks(period, site_response, standard_error, 
                              cp_alpha = 0.0003, step_thres = 0.65, amp_thres = 0.27, 
@@ -71,7 +71,7 @@ Output Arguments:
       ```fig``` = matplotlib Figure object
 
 
-### tree_to_nodes
+## tree_to_nodes
 ```python
 tree_to_nodes(period, site_response, cp_alpha)
 ```
